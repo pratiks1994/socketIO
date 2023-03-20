@@ -28,10 +28,15 @@ function App() {
 
 const sendMessage = (e) =>{
   e.preventDefault()
-  socket.emit("message",message)
+
+  let id = "john"
+
+  let newMessage = {id,message}
+  socket.emit("message",newMessage)
   setMessage("")
 }
  
+
   socket.on("newMessage",(newMessage)=>{
     setChat(prev => [...prev,newMessage])
   })
@@ -40,14 +45,14 @@ const sendMessage = (e) =>{
 
   return (
     <div className="App d-flex align-items-center justify-content-center">
-      <Container className='d-flex align-items-center justify-content-center flex-column'>
-        <div className='chatbox w-50 h-50 shadow border-4 rounded-4 p-4'>
+      <Container className='d-flex flex-column justify-content-center align-items-lg-center bg'>
+        <div className='chatbox w-50 shadow border-4 rounded-4 p-4'>
           {chat.map((msg,index)=> {
-            return <div key = {index}>{msg}</div>
+            return <div className ={msg.id==="john" ? "text-end m-2 bg-primary rounded p-2" : "text-start m-2 bg-inforounded p-2"}key = {index}>{msg.message}</div>
           } )}
         </div>
-        <Form className='d-flex'>
-          <Form.Group className='mt-3 w-100 flex-grow-1'>
+        <Form className='d-flex w-100 justify-content-center'>
+          <Form.Group className='mt-3 w-50' >
             <Form.Control type = "text" value={message} onChange = {(e)=> setMessage(e.target.value)}  />
           </Form.Group>
           <Button type='submit' onClick={sendMessage} className='mt-3 ms-3'>send</Button>
