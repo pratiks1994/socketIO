@@ -64,9 +64,9 @@ useEffect(() => {
   return (
     <div className="App d-flex align-items-center justify-content-center">
       <Container className='d-flex flex-column justify-content-center align-items-lg-center bg'>
-        <div className='chatbox w-50 shadow border-4 rounded-4 p-4'>
+        <div className='chatbox d-flex flex-column w-50 shadow border-4 rounded-4 p-4'>
           {chat.map((msg)=> {
-            return <div className ={msg.id==="john" ? "text-end m-2 bg-primary rounded p-2" : "text-start m-2 bg-info rounded p-2"}>{msg.message}</div>
+            return <div className ={msg.id==="john" ? "text-end mt-2 ms-auto bg-secondary rounded p-2 w-50 " : "text-start mt-2 me-auto bg-info rounded p-2 w-50 flex-start"}>{msg.message}</div>
           } )}
         </div>
         <Form className='d-flex w-100 justify-content-center'>
